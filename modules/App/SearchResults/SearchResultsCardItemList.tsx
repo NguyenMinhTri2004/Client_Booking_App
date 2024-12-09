@@ -1,14 +1,17 @@
 
 import SearchResultsCardItem from './SearchResultsCardItem';
 
-const SearchResultsCardItemList = (props : any) => {
+const SearchResultsCardItemList = ({data, isModal} : any) => {
+    
     return (
        <div className='SearchResultsCardItemList' >
-            <SearchResultsCardItem/>
-            <SearchResultsCardItem/>
-            <SearchResultsCardItem/>
-            <SearchResultsCardItem/>
-            <SearchResultsCardItem/>
+            {
+                data?.map((item:any , index:number) => {
+                    return (
+                        <SearchResultsCardItem isModal = {isModal} key={index} data={item}/>
+                    )
+                })
+            }
        </div>
     )
 }

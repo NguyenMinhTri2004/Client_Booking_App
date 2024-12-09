@@ -9,10 +9,10 @@ const HotelSimilar = (props : any) => {
     return (
         <Section>
              <SectionTitle>
-                <p>Khách từng xem Muong Thanh My Khe Beach Apartment Da Nang đã đặt các chỗ nghỉ này</p>
-                <div>
+                <p>Chỗ nghỉ tương tự</p>
+                {/* <div>
                     <ButtonBlue>Hiển thị thêm</ButtonBlue>
-                </div>
+                </div> */}
              </SectionTitle>
         
              <SectionBody>

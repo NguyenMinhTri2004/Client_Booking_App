@@ -7,6 +7,13 @@
 // @import './style_rich_text.scss';
 @import './horizontal-scroll.scss';
 
+@mixin flex($align-item , $justify-content) {
+  display: flex;
+  align-items: $align-item;
+  justify-content: $justify-content;
+}
+
+
 // @font-face {
 //   font-family: 'Chalkboard';
 //   src: url('/fonts/chalkboard.ttf');
@@ -175,7 +182,7 @@ div.ant-tabs-tab.ant-tabs-tab-active {
     background-color: white !important;
 
     ::placeholder {
-      color: #373636 !important;
+      color: black !important;
     }
   }
 
@@ -477,7 +484,7 @@ table tr td {
   }
 }
 .ant-select-single.ant-select-show-arrow .ant-select-selection-item {
-  color: white !important;
+  // color: white !important;
 }
 .app-overview-analytics-audience,
 .app-overview-analytics-traffic-source {
@@ -538,7 +545,7 @@ table tr td {
 }
 .ant-card .ant-card-head {
   padding: 0px;
-  min-height: auto;
+  // min-height: auto;
 }
 .ant-modal-close-x > span > svg {
   color: black !important;
@@ -581,7 +588,7 @@ table tr td {
     color: black !important;
     .ant-input::placeholder,
     .ant-form-item-required {
-      color: #737373 !important;
+      color: black !important;
     }
   }
 }
@@ -590,7 +597,7 @@ table tr td {
   background-color: inherit !important;
   .ant-input::placeholder,
   .ant-form-item-required {
-    color: #737373 !important;
+    color: black !important;
   }
 }
 .app .ant-form-item .ant-form-item-label > label {
@@ -624,7 +631,7 @@ table tr td {
     color: black !important;
   }
   :where(.css-dev-only-do-not-override-15pci0z).ant-input::placeholder {
-    color: #a3a3a3 !important;
+    color: black !important;
   }
 }
 
@@ -690,4 +697,336 @@ table tr td {
 
 .ant-tabs-tab:hover {
   color: white !important;
+}
+
+.swiper-pagination {
+  translate: 0px 50% !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white !important;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+  border-radius: 100%;
+  font-size: 15px;
+  padding: 20px;
+}
+
+.swiper-button-next {
+  transform: translate(20%, 0px)
+}
+
+.swiper-button-prev {
+  transform: translate(-20%, 0px)
+}
+
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after,
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after {
+  content: 'next';
+  color: black;
+  font-size: 15px !important;
+}
+
+img, video {
+}
+
+
+.ant-select-selection-placeholder {
+  color: black !important; 
+}
+
+.ant-picker-input > input::placeholder {
+  color: black !important;
+}
+
+.catalog {
+      
+  &__top {
+      @include flex(flex-end, space-between);
+      width: 100%;
+      padding : 20px 0;
+
+      &__item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        & > h5 {
+            font-size: 1.3rem;
+        }
+
+        &__img {
+            width: 20px;
+
+           
+        }
+
+        & > span {
+            @include flex (flex-end , space-between);
+            border : 1px solid black;
+            border-radius: 3px;
+            padding : 10px 20px;
+            gap: 5px;
+
+            & > i {
+                font-size: 1.3rem;
+            }
+        }
+
+        & > select {
+          border : 1px solid black;
+          border-radius: 3px;
+          padding: 10px;
+           
+          & > option {
+            
+            }
+        }
+
+       
+
+        &:last-of-type {
+
+          &__img {
+             margin-top: 10px;
+          }
+
+          & > h6 {
+              margin-top: 10px;
+          }
+        }
+      }
+  }
+
+  &__bottom {
+      @include flex(flex-start , flex-start);
+      width: 100%;
+  }
+
+  &__filter {
+      width: 20%;
+      border : 1px solid rgb(230, 225, 225);
+      min-width: 165px;
+     
+      &__wrapper {
+          padding: 20px;
+      }
+      
+      &__widget {
+
+          padding-bottom: 10px;
+
+          &__title {
+               margin-bottom: 10px;  
+               font-size: 1.1rem;
+               font-weight : 700;
+
+               & > p {
+                   text-transform: uppercase;
+               }
+          }
+
+          &__item {
+              display: flex;
+              gap: 5px;
+              margin-bottom: 10px;
+              font-weight : 400;
+          }
+      }
+  }
+
+  &__content {
+     flex-grow: 1;
+     width: 600px;
+  }   
+}
+
+
+.marker-icon {
+  transition: transform 0.3s ease !important; /* Thêm hiệu ứng mượt */
+}
+
+.marker-icon:hover {
+  transform: scale(1.3) !important; /* Phóng to marker khi hover */
+}
+
+.gm-style-iw button[title="Close"] {
+  display: none !important;
+}
+
+/* General styles for the card */
+.SearchResultsCardItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.SearchResultsCardItem:hover {
+  background-color: #f1f5f9;
+}
+
+/* Image section styles */
+.SearchResultsCardItem__right {
+  width: 40%;
+  position: relative;
+}
+
+.SearchResultsCardItem__right img {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.SearchResultsCardItem__right .icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+/* Middle section with hotel name and description */
+.SearchResultsCardItem__mid {
+  width: 50%;
+  padding-right: 10px;
+}
+
+.SearchResultsCardItem__mid p {
+  margin: 0;
+}
+
+.SearchResultsCardItem__mid .text-xl {
+  color: #1e40af;
+  font-weight: bold;
+}
+
+.SearchResultsCardItem__mid .text-12 {
+  color: #4b5563;
+}
+
+/* Right section with rating and price */
+.SearchResultsCardItem__left {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.SearchResultsCardItem__left .rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.SearchResultsCardItem__left .rating p {
+  margin: 0;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.SearchResultsCardItem__left .rate-badge {
+  background-color: #1d4ed8;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.SearchResultsCardItem__left .price-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #4f46e5;
+}
+
+
+/* General styles for the card */
+.SearchResultsCardItem {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  height: 200px; /* Set a fixed height for the card */
+  overflow: hidden;
+}
+
+.SearchResultsCardItem:hover {
+  background-color: #f1f5f9;
+}
+
+/* Image section styles */
+.SearchResultsCardItem__right {
+  width: 40%;
+  height: 100%; /* Make the image container take full height */
+  position: relative;
+}
+
+.SearchResultsCardItem__right img {
+  border-radius: 8px;
+  object-fit: cover; /* Ensure the image covers the container */
+  width: 100%;
+  height: 100%; /* Make the image take full height of the container */
+}
+
+.SearchResultsCardItem__right .icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+/* Middle section with hotel name and description */
+.SearchResultsCardItem__mid {
+  width: 50%;
+  padding-right: 10px;
+  overflow: hidden;
+}
+
+.SearchResultsCardItem__mid p {
+  margin: 0;
+}
+
+.SearchResultsCardItem__mid .text-xl {
+  color: #1e40af;
+  font-weight: bold;
+}
+
+.SearchResultsCardItem__mid .text-12 {
+  color: #4b5563;
+}
+
+/* Right section with rating and price */
+.SearchResultsCardItem__left {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.SearchResultsCardItem__left .rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.SearchResultsCardItem__left .rating p {
+  margin: 0;
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+.SearchResultsCardItem__left .rate-badge {
+  background-color: #1d4ed8;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.SearchResultsCardItem__left .price-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #4f46e5;
 }

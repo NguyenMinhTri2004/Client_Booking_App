@@ -2,19 +2,19 @@
 import { Checkbox } from 'antd/lib';
 import type { CheckboxProps } from 'antd/lib';
 
-const SearchResultsCheckbox = (props : any) => {
+const SearchResultsCheckbox = ({data, checkFunc, type} : any) => {
 
     const onChange: CheckboxProps['onChange'] = (e) => {
         console.log(`checked = ${e.target.checked}`);
+        checkFunc(type, e.target.checked, data);
+        
     };
 
     return (
-        <div className='flex items-center justify-between' >
+        <div className='ml-[3%] text-12' >
              <Checkbox onChange={onChange}>
-                Checkbox
+                {data?.name ? data.name : data}
              </Checkbox>
-
-             <p>68</p>
         </div>
        
     )

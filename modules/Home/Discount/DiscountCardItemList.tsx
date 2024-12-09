@@ -7,29 +7,23 @@ import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import { Pagination } from 'swiper/modules';
 
-const DiscountCardItemList = (props : any) => {
+const DiscountCardItemList = ({data} : any) => {
     return (
-        <Swiper navigation={true} slidesPerView={3}
+        <Swiper navigation={true} slidesPerView={1}
         spaceBetween={30}
         pagination={{
           clickable: true,
         }} modules={[Navigation , Pagination]} className="mySwiper">
-             <SwiperSlide>
-                 <DiscountCardItem/>
-            </SwiperSlide>
-
-            <SwiperSlide>
-                 <DiscountCardItem/>
-            </SwiperSlide>
-
-            <SwiperSlide>
-                 <DiscountCardItem/>
-            </SwiperSlide>
-
-            <SwiperSlide>
-                 <DiscountCardItem/>
-            </SwiperSlide> 
-           
+          {
+               data.map((item:any, index:number) => {
+                    return (
+                         <SwiperSlide key={index}>
+                             <DiscountCardItem data={item}/>
+                         </SwiperSlide>
+                    )
+ 
+               })
+          }   
       </Swiper>
     )
 }

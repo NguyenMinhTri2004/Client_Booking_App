@@ -8,7 +8,10 @@ import SectionSubtitle from '@/common/components/Section/SectionSubTitle';
 import Section from "@/common/components/Section"
 import DiscountCardItemList from './DiscountCardItemList';
 
-const Discount = () => {
+const Discount = ({data} : any) => {
+
+  console.log("Data from discount", data);
+
   return (
         <Section>
             <SectionTitle>
@@ -20,7 +23,7 @@ const Discount = () => {
             </SectionSubtitle>
 
             <SectionBody>
-                 <DiscountCardItemList/>
+                 <DiscountCardItemList data = {data}/>
             </SectionBody>
         </Section>
   );

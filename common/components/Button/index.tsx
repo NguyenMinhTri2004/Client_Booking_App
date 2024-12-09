@@ -1,5 +1,7 @@
-import { useRouter } from 'next/router';
+import { useRouter} from 'next/router';
+import { useEffect, useState } from 'react';
 import React, { Children } from 'react';
+import { Add } from "iconsax-react";
 
 const Button = (props:any) => {
   const router = useRouter();
@@ -37,7 +39,7 @@ export const ButtonBlue = (props: any) => {
       // onClick={() => {
       //   router.push(`/app/founder/detail/${props.link}`);
       // }}
-      className="button md:px-[20px] h-full w-full px-3 py-5 md:py-[6px] text-[14px] rounded-sm bg-primary-blue text-white border-[2px_2px_4px_2px] md:transition ease-in-out delay-150 font-bold duration-300"
+      className="button w-full h-full md:w-auto md:px-5 px-4 py-2 md:py-3 text-sm md:text-base rounded-sm bg-primary-blue text-white border-2 border-transparent transition ease-in-out delay-150 font-bold duration-300 hover:bg-blue-700"
     >
       {props.children}
     </button>
@@ -51,8 +53,39 @@ export const ButtonTransparent = (props: any) => {
       // onClick={() => {
       //   router.push(`/app/founder/detail/${props.link}`);
       // }}
-      className="button md:px-[20px] h-full px-3 py-5 md:py-[6px] text-[14px] hover:bg-slate-100/20 rounded-sm bg-transparent text-white border-[2px_2px_4px_2px] border-white border md:transition ease-in-out delay-150 font-bold duration-300"
+      className={`button md:px-[20px] h-full px-3 py-5 md:py-[6px] text-[14px] hover:bg-blue-300/30 rounded-sm bg-transparent ${props.drawer ? "text-blue-700" : "text-white"}  border-[2px_2px_4px_2px] ${props.drawer ? "border-blue-600" : "border-none"} border md:transition ease-in-out delay-150 font-bold duration-300`}
     >
+      {props.children}
+    </button>
+  );
+};
+
+
+export const ButtonToPic = (props : any) => {
+  const [activeButtonToPic, setActiveButtonToPic] = useState(false);
+
+  const handleActive = () => {
+    props.handleOpenDrawer()
+    setActiveButtonToPic(true);
+  }
+
+  useEffect(() => {
+    if(!props.openDrawer){
+      setActiveButtonToPic(false);
+    }
+}, [props?.openDrawer]);
+
+  return (
+    <button
+      className="border py-1 px-2 w-24 gap-2 rounded-3xl border-slate-300 flex items-center justify-center"
+      onClick = {() => handleActive()}
+    >
+      <Add
+        size="20"
+        color="black"
+        className={`duration-75 ${activeButtonToPic ? "rotate-45" : ""}`}
+       
+      />
       {props.children}
     </button>
   );

@@ -306,5 +306,6 @@ const config: Config = {
     textColor: ['checked'],
     scale: ['active', 'group-hover'],
   },
+  important: true,
 };
 export default config;

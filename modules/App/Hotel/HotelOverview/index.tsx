@@ -5,10 +5,11 @@ import { ButtonBlue } from "@/common/components/Button";
 import { DatePicker, Space } from 'antd/lib';
 import Image from "next/image";
 import CheckboxComponent from "@/common/components/Checkbox";
-import {HeartAdd , Share} from 'iconsax-react';
+import { FaStar, FaThumbsUp, FaUmbrellaBeach, FaMapMarkerAlt, FaHeart, FaShareAlt, FaTag } from 'react-icons/fa';
 import { Location } from "iconsax-react";
+import HotelServiceItem from "../HotelServiceItem";
 
-const HotelOverview = (props : any) => {
+const HotelOverview = ({data}:any) => {
     const { RangePicker } = DatePicker;
 
     return (
@@ -62,19 +63,22 @@ const HotelOverview = (props : any) => {
                              </div>
 
                             <div>
-                               <MiniMap/>
+                               <MiniMap setOpen={function (value: boolean): void {
+                                throw new Error("Function not implemented.");
+                            } }/>
                             </div>
                              
                         </div>
 
                         <div className='HotelOverview__right' >
-                                <div className="HotelOverview__right__top flex items-center justify-between" >
+                                {/* <div className="HotelOverview__right__top flex items-center justify-between" >
                                        <div>
                                              <p>Bãi biển</p>
-                                             <p className="font-bold text-2xl" >Muong Thanh My Khe Beach Apartment</p>
+                                             <p className="font-bold text-2xl" >{data?.name}</p>
                                              <div className="flex items-center gap-1" >
                                                  <Location size="20" color="blue" variant="Bold"/>
-                                                 <p className="text-14" >Trần Bạch Đằng, Đà Nẵng, Việt Nam </p>
+                                                 <p className="text-14" >{data?.streetName} - {data?.city} - {data?.region}
+                                                </p>
                                              </div>
                                              
                                        </div>
@@ -85,35 +89,70 @@ const HotelOverview = (props : any) => {
                                                 <Share className="cursor-pointer" size="45" color="blue"/>
                                                 <ButtonBlue>Đặt ngay</ButtonBlue>  
                                             </div>
-                                            {/* <div>
-                                                <p>Chúng tôi luôn khớp giá</p>
-                                            </div> */}
+                                         
                                        </div>
                                         
                                        
+                                </div> */}
+
+                                <div className="p-4">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                        <div className="flex items-center space-x-1">
+                                            <div className="flex items-center text-yellow-500">
+                                            <FaStar />
+                                            <FaStar />
+                                            <FaStar />
+                                            <FaStar />
+                                            <FaStar />
+                                            </div>
+                                            <div className="flex items-center text-yellow-500">
+                                            <FaThumbsUp />
+                                            </div>
+                                            <div className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                                            <FaUmbrellaBeach /> Beachfront · Private beach
+                                            </div>
+                                        </div>
+                                        <h1 className="text-2xl font-bold mt-2">The IMPERIAL Vung Tau Hotel</h1>
+                                        <div className="flex items-center text-sm mt-1">
+                                            <FaMapMarkerAlt className="text-blue-500" />
+                                            <span className="ml-1">159 Thuy Van Street, Vung Tau, Vietnam –</span>
+                                            <a href="#" className="text-blue-600 font-semibold ml-1">Excellent location - show map</a>
+                                        </div>
+                                        </div>
+                                        <div className="flex items-center space-x-4">
+                                        <FaHeart className="text-blue-500 text-xl" />
+                                        <FaShareAlt className="text-blue-500 text-xl" />
+                                        <button className="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Reserve</button>
+                                        <div className="flex items-center text-blue-600">
+                                            <FaTag />
+                                            <span className="ml-1">We Price Match</span>
+                                        </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="HotelOverview__right__bottom" >
                                      <div className="HotelOverview__right__bottom__bigImg flex items-center gap-3" >
                                         <div className="HotelOverview__right__bottom__bigImg__left flex flex-col ">
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="250"
-                                                height="50"
-                                                className="object-contain cursor-pointer"
-                                            />
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="250"
-                                                height="50"
-                                                className="object-contain cursor-pointer"
-                                            />
+                                            {
+                                                data?.images.map((image: any, index: any) => {
+                                                    return (
+                                                        <Image
+                                                            key={index}
+                                                            src={image}
+                                                            alt="Picture of the author"
+                                                            width="250"
+                                                            height="150"
+                                                            className="object-contain cursor-pointer"
+                                                        />
+                                                    )
+                                                })
+                                            }
                                         </div>
                                          <div className="HotelOverview__right__bottom__bigImg__right">
                                             <Image
-                                                src="/images/BannerHome01.png"
+                                                src= {data?.images[0]}
                                                 alt="Picture of the author"
                                                 width="600"
                                                 height="100"
@@ -124,191 +163,94 @@ const HotelOverview = (props : any) => {
                                         
 
                                         <div className="flex items-center gap-3" >
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="200"
-                                                height="200"
-                                                className="object-contain cursor-pointer"
-                                            />
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="200"
-                                                height="200"
-                                                className="object-contain cursor-pointer"
-                                            />
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="200"
-                                                height="200"
-                                                className="object-contain cursor-pointer"
-                                            />
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="200"
-                                                height="200"
-                                                className="object-contain cursor-pointer"
-                                            />
-                                            <Image
-                                                src="/images/BannerHome01.png"
-                                                alt="Picture of the author"
-                                                width="200"
-                                                height="200"
-                                                className="object-contain cursor-pointer"
-                                            />
+                                            {
+                                                data?.images?.slice(0,4)?.map((image: any, index: any) => {
+                                                    return (
+                                                        <Image
+                                                            key={index}
+                                                            src={image}
+                                                            alt="Picture of the author"
+                                                            width="250"
+                                                            height="150"
+                                                            className="object-contain cursor-pointer"
+                                                        />
+                                                    )
+                                                })
+                                            }
                                         </div>
                                 </div>
 
                         </div>
                  </div>
 
-                 <div className="flex items-center gap-5 flex-wrap" >
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
+                 <div className="" >
+                    {
+                        data?.attributes &&  Object.keys(data?.attributes).map((item: string, index: number) => (
+                                <div key={index} className="">
+                                    {/* <Image
+                                        src="/images/BannerHome01.png"
+                                        alt="Picture of the author"
+                                        width="20"
+                                        height="20"
+                                    /> */}
+                                    <h1 className="font-bold text-base my-5" >{item.toUpperCase()}</h1>
+                                    {/* <p>{data.attributes[item]}</p>
+                                    {item} */}
 
-                         <p>Can ho</p>
-                      </div>
+                                    {
+                                        Object.keys(data?.attributes[item]).length > 1 ? <div className="flex items-center gap-2" >
+                                            {
+                                                Object.keys(data?.attributes[item]).map((child: string, index: number) => (
+                                                    // <span key={index} className="mx-5 border border-blue-500 rounded-lg p-3 cursor-pointer shadow-md outline-none">
+                                                    //     <p className="font-bold" >{child}</p>
+                                                    //     <p className="text-sm" >
+                                                    //         ( 
+                                                    //             {data.attributes[item][child]}
+                                                    //         )
+                                                    //     </p>
+                                                        
+                                                    // </span>
 
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
-
-                         <p>Can ho</p>
-                      </div>
-
-
-
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
-
-                         <p>Can ho</p>
-                      </div>
-
-
-
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
-
-                         <p>Can ho</p>
-                      </div>
-
-
-
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
-
-                         <p>Can ho</p>
-                      </div>
-
-
-
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
-
-                         <p>Can ho</p>
-                      </div>
-
-
-
-                      <div className="flex items-center gap-3 border py-3 px-7 cursor-pointer" >
-                         <Image
-                             src="/images/BannerHome01.png"
-                             alt="Picture of the author"
-                             width="80"
-                             height="80"
-                             className="object-contain cursor-pointer"
-                         />
-
-                         <p>Can ho</p>
-                      </div>
-
-
-                      
-                     
+                                                    <HotelServiceItem title = {child} detail = {data.attributes[item][child]} key = {index}/>
+                                                ))
+                                            }
+                                        </div> 
+                                        :   <HotelServiceItem detail = {data.attributes[item]}/>
+                                    }
+                                </div>
+                        ))
+                    }
                  </div>
 
                  <div className="mt-5 flex items-start gap-10" >
                     <div className="w-[70%]" >
-                         <p className="font-bold text-18" >Trải nghiệm dịch vụ đẳng cấp thế giới ở Henderson Beach Resort</p>
-                         <p className="text-14" >Nằm ngay cạnh công viên bang Henderson Beach State Park, Henderson Beach Resort có bãi biển riêng. Du khách có thể ngâm mình sảng khoái tại một trong 2 hồ bơi của resort hoặc thư giãn trong spa đầy đủ dịch vụ. Một số lựa chọn ăn uống được cung cấp trong khuôn viên đảm bảo du khách sẽ thích. Chỗ nghỉ cũng có không gian tổ chức hội họp và sự kiện rộng 2.787m2. WiFi miễn phí được cung cấp cho tất cả du khách. <br></br><br></br>
-
-                            Phòng nghỉ tại đây có TV truyền hình cáp màn hình phẳng, máy pha cà phê và ban công nhìn ra hồ bơi, biển hoặc sân trong. Du khách có thể sử dụng quầy giải khát và minibar trong phòng. Một số phòng còn có ghế sofa.<br></br><br></br>
-
-                            Du khách có thể rèn luyện sức khỏe tại trung tâm thể dục trong khuôn viên. Trung tâm dịch vụ doanh nhân là nơi hoàn hảo cho khách doanh nhân. Resort này cung cấp nhiều hoạt động như lướt ván đứng, đi xe đạp và chèo thuyền kayak.<br></br><br></br>
-
-                            Với tầm nhìn ra resort, Primrose là nhà hàng đầy đủ dịch vụ phục vụ hải sản tươi ngon và bít tết. Nhà hàng Horizons cho tầm nhìn ra toàn cảnh Duyên hải Vịnh Mexico của Hoa Kỳ. Tại đây có quầy bar hình bát giác và phục vụ hải sản tươi sống cũng như một loạt món ăn khác trong thực đơn. Sea Level Pool Grill là lựa chọn ăn uống bình dân với đồ ăn nhẹ và đồ ăn cho bữa trưa.<br></br><br></br>
-
-                            Henderson Beach Resort nằm cách trung tâm mua sắm HarborWalk Village 8 km. Sân bay gần nhất là sân bay Destin-Fort Walton Beach, nằm trong bán kính 14 km từ chỗ nghỉ.
-
-                            Các cặp đôi đặc biệt thích địa điểm này — họ cho điểm 9,4 cho kỳ nghỉ dành cho 2 người.
-                        </p>
+                         <p className="text-base my-5 text-wrap text-justify" >{data?.details}</p>
+                        
+                         <button className="mt-4 px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white transition">
+                              Show me more
+                        </button>
 
                         <p className="font-bold mt-8" >Các tiện nghi được ưa chuộng nhất</p>
-                        <div className="flex items-center gap-3" >
-                            <div className="flex items-center gap-3" >
-                                <Image
-                                    src="/images/BannerHome01.png"
-                                    alt="Picture of the author"
-                                    width="200"
-                                    height="200"
-                                    className="object-contain cursor-pointer"
-                                />
-                                Mien phi
-                            </div>
 
-                            <div className="flex items-center gap-3" >
-                                <Image
-                                    src="/images/BannerHome01.png"
-                                    alt="Picture of the author"
-                                    width="200"
-                                    height="200"
-                                    className="object-contain cursor-pointer"
-                                />
-                                Cho do xe mien phi
-                            </div>
+                        {
+                            data?.convenients &&  Object.keys(data?.convenients).map((item: string, index: number) => (
+                                    <div key={index} className="">
+                                        <h1 className="font-bold text-sm my-5" >{item.toUpperCase()}</h1>             
 
-                            <div>
+                                        <div className="flex items-center gap-3 flex-wrap" >
+                                            {
+                                                data.convenients[item].map((item:string, index:number) => (
+                                                    // <span key={index} className="mx-5 border border-slate-400 rounded-sm p-3 cursor-pointer">
+                                                    //   {item}
+                                                    // </span>
 
-                            </div>
-                        </div>
+                                                    <HotelServiceItem title = {item}key = {index}/>
+                                                ))
+                                            }
+                                        </div>   
+                                    </div>
+                            ))
+                        }
                     </div>
 
                     <div className="w-[25%] ml-auto flex flex-col gap-5 bg-[#E4F4FF] p-4" >

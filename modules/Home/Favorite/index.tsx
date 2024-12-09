@@ -4,7 +4,9 @@ import SectionTitle from '@/common/components/Section/SectionTitle';
 import Section from "@/common/components/Section"
 import FavoriteCartItemList from './FavoriteCartItemList';
 
-const Favorite = () => {
+const Favorite = ({data} : any) => {
+  console.log("From Favorite" , data)
+
   return (
         <Section>
             <SectionTitle>
@@ -13,7 +15,7 @@ const Favorite = () => {
             </SectionTitle>
 
             <SectionBody>
-                  <FavoriteCartItemList/>
+                  <FavoriteCartItemList data = {data} />
             </SectionBody>
         </Section>
   );

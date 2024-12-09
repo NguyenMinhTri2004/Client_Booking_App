@@ -5,31 +5,36 @@ import SectionBody from '@/common/components/Section/SectionBody';
 import Image from "next/image";
 import { ButtonBlue } from "@/common/components/Button";
 
-const HotelGeneralRule = (props : any) => {
+const HotelGeneralRule = ({data} : any) => {
 
     return (
         <Section>
              <SectionTitle>
                 <p>Quy tắc chung</p>
-                <div>
+                {/* <div>
                      <ButtonBlue>Xem phòng trống</ButtonBlue>
-                </div> 
+                </div>  */}
              </SectionTitle>
         
              <SectionBody>
                   <div className="border p-5" >
-                        <div className="flex items-start gap-10" >
-                            <div className="flex items-center gap-3 mr-5" >
-                                    <p>ii</p>
-                                    <p>Hủy đặt phòng/Trả trước</p>
+                        {
+                          data?.generalRules?.map((item : any, index : number) => (
+                            <div className="flex items-start gap-10 border-b p-5" >
+                                <div className="flex items-center gap-3 mr-5 font-bold w-[30%]" >
+                                        <p>{index + 1}</p>
+                                        <p>{item?.title}</p>
+                                </div>
+
+                                <div className="w-full" >
+                                  <p className="w-[70%] text-wrap text-sm text-slate-700" > {item?.description}
+                                  </p>
+                                    
+                                </div>
                             </div>
 
-                            <div>
-                                 Các loại căn hộ khác nhau có thể có chính sách hủy đặt phòng 
-                                 và chính sách thanh toán trước không giống nhau. Xin vui lòng
-                                  kiểm tra điều kiện căn hộ khi lựa chọn căn hộ của bạn ở phía trên.
-                            </div>
-                        </div>
+                          ))
+                        }      
                   </div>
              </SectionBody>
         </Section>

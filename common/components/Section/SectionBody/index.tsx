@@ -1,6 +1,6 @@
 const SectionBody = (props : any) => {
     return (
-        <div className="section__body my-6">
+        <div className="section__body my-6 relative">
               {props.children}
         </div>
     )

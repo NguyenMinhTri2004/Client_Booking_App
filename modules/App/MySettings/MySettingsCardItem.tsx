@@ -1,26 +1,33 @@
 
 import Image from 'next/image';
-import { Button } from "antd/lib";
+import Link from 'next/link';
 
-const MySettingsCardItem = (props : any) => {
+const MySettingsCardItem = ({data}:any) => {
+
+    console.log("Data from card item" , data)
     return (
-        <div className='MySettingsCardItem flex items-start gap-3 border rounded-md p-5 cursor-pointer w-[40%] hover:text-blue-500' >
-                <div className='MySettingsCardItem__left' >
-                    <Image
-                        src="/images/BannerHome01.png"
-                        alt="Picture of the author"
-                        width="70"
-                        height="70"
-                        className="object-contain rounded-full"
-                    />
-                </div>
+        <Link className = "w-[45%]" href = {`/mysettings/personal/${data?.id}`} >
+            <div className='MySettingsCardItem flex items-start gap-3 border rounded-md p-5 cursor-pointer w-full hover:text-blue-500' >
+            
+                    <div className='MySettingsCardItem__left bg-slate-100 rounded-full p-2' >
+                        <Image
+                            src= {`${process.env.NEXT_PUBLIC_API_STRAPI_HOST}${data?.attributes?.Icon?.data?.attributes?.url}`}
+                            alt="Picture of the author"
+                            width="25"
+                            height="25"
+                            className="object-contain  rounded-full "
+                        />
+                    </div>
 
-                <div className='MySettingsCardItem__right' >
-                    <p>Thong tin ca nhan</p>
-                    <p>Cap nhat thong tinll lllll</p>
-                    <a className='text-primary-blue' href="">Quan ly thong tin ca nhan</a>
-                </div>
-        </div>
+                    <div className='MySettingsCardItem__right' >
+                        <p className = "text-xl font-bold" >{data?.attributes?.
+    Title}</p>
+                        <p className = "text-14" >{data?.attributes?.Description}</p>
+                        <a className='text-primary-blue text-14 hover:underline' href="">{data?.attributes?.TextLink}</a>
+                    </div>
+            
+            </div>
+        </Link>
     )
 }
 
